@@ -1,0 +1,15 @@
+#! /usr/bin/env node
+'use strict';
+
+{
+	const run = require('./index');
+	(async function() {
+		try {
+			await run(process.argv);
+			process.exit(0);
+		} catch (e) {
+			console.log(e);
+			process.exit(1);
+		}
+	})();
+}

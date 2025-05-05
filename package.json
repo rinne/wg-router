@@ -1,0 +1,14 @@
+{
+  "name": "wg-router",
+  "version": "1.0.0",
+  "main": "wg-router.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Timo J. Rinne",
+  "license": "GPL-2.0",
+  "description": "",
+  "dependencies": {
+    "ipaddr.js": "^2.2.0"
+  }
+}
