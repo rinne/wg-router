@@ -76,7 +76,6 @@ async function run(av) {
 		let first = true;
 		while (true) {
 			await new Promise(resolve => setTimeout(resolve, first ? 5000 : (25000 + Math.floor(Math.random() * 10000))));
-			first = false;
 			let n = new Set(([].concat(...(Array.from(hosts.values()).map((x)=>Array.from(x))))));
 			let add = new Set();
 			for (let a of n) {
@@ -114,6 +113,7 @@ async function run(av) {
 					}
 				}
 			}
+			first = false;
 		}
 	} catch (e) {
 		console.error(e);
