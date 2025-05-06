@@ -61,13 +61,15 @@ async function run(av) {
 						console.warn(e);
 						a = [];
 					}
-					await new Promise(resolve => setTimeout(resolve, 59000 + Math.floor(Math.random() * 2000)));
+					await new Promise(resolve => setTimeout(resolve, 55000 + Math.floor(Math.random() * 10000)));
 				}
 			})(h);
 		}
 		let c = new Set();
+		let first = true;
 		while (true) {
-			await new Promise(resolve => setTimeout(resolve, 4500 + Math.floor(Math.random() * 1000)));
+			await new Promise(resolve => setTimeout(resolve, first ? 5000 : (25000 + Math.floor(Math.random() * 10000))));
+			first = false;
 			let n = new Set(([].concat(...(Array.from(hosts.values()).map((x)=>Array.from(x))))));
 			let add = new Set();
 			for (let a of n) {
