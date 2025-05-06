@@ -3,6 +3,7 @@
 async function run(av) {
 	const resolve4 = require('node:dns').promises.resolve4;
 	const ipaddr = require('ipaddr.js');
+	const isFqdn = require('./isfqdn');
 	const setAllowedIPs = require('./setallowedips');
 	const getAllowedIPs = require('./getallowedips');
 	const setCmp = require('./setcmp');
@@ -38,6 +39,12 @@ async function run(av) {
 					s.add(h);
 					return;
 				}
+				if (! isFqdn(h)) {
+					console.log(`ignored ${h} because it's not an IPv4 address, IPv4 CIDR, nor FQDN`);
+					return;
+				}
+				console.log(`adding ${h} as watched domain`);
+				await new Promise(resolve => setTimeout(resolve, 100 + Math.floor(Math.random() * 900)));
 				while (true) {
 					let a;
 					try {
