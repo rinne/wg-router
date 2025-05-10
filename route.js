@@ -7,6 +7,9 @@ const execFileAsync = promisify(execFile);
 
 const ipaddr = require('ipaddr.js');
 
+// ip route add 1.2.3.4/32 via 10.0.0.1 dev eth3
+// ip route del 1.2.3.4/32 dev eth3
+
 async function _route(cmd, addr, iface) {
 	if (! (typeof(iface) === 'string')) {
 		console.log(new Error(`Failed to ${cmd} route ${addr} to "${iface}": Not a valid interface`));
@@ -18,7 +21,7 @@ async function _route(cmd, addr, iface) {
 	}
 	let stdout;
 	try {
-		({ stdout } = await execFileAsync('route', [cmd, addr, iface ]));
+	    ({ stdout } = await execFileAsync('ip', ['route', cmd, addr, 'dev', iface ]));
 	} catch (err) {
 		console.log(new Error(`Failed to ${cmd} route ${addr} to "${iface}": ${err.message}`));
 		return false;
